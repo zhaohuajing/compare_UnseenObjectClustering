@@ -69,4 +69,6 @@ TEST:
   VISUALIZE: True
   SYNTHESIZE: True
   POSE_REFINE: False
-  ROS_CAMERA: Fetch
+  # ROS_CAMERA: Fetch
+  # Modified to temporally test with customer defined rgbd publisher
+  ROS_CAMERA: D415
