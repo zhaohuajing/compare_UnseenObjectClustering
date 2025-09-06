@@ -62,6 +62,8 @@ class ImageListener:
 
         # initialize a node
         rospy.init_node("seg_rgb")
+        print("[INFO] ROS node initialized.")
+        print(f"cfg.TEST.ROS_CAMERA = {cfg.TEST.ROS_CAMERA}")
         self.label_pub = rospy.Publisher('seg_label', Image, queue_size=10)
         self.label_refined_pub = rospy.Publisher('seg_label_refined', Image, queue_size=10)
         self.image_pub = rospy.Publisher('seg_image', Image, queue_size=10)
@@ -81,8 +83,10 @@ class ImageListener:
             rgb_sub = message_filters.Subscriber('/camera/color/image_raw', Image, queue_size=10)
             depth_sub = message_filters.Subscriber('/camera/aligned_depth_to_color/image_raw', Image, queue_size=10)
             msg = rospy.wait_for_message('/camera/color/camera_info', CameraInfo)
+            print(f"get msg:{msg}")
             self.camera_frame = 'measured/camera_color_optical_frame'
             self.target_frame = self.base_frame
+            print("subscribed to camera")
         elif cfg.TEST.ROS_CAMERA == 'Azure':
             self.base_frame = 'measured/base_link'
             rgb_sub = message_filters.Subscriber('/k4a/rgb/image_raw', Image, queue_size=10)
@@ -281,7 +285,7 @@ if __name__ == '__main__':
     cfg.instance_id = args.instance_id
     num_classes = 2
     cfg.MODE = 'TEST'
-    cfg.TEST.VISUALIZE = False
+    cfg.TEST.VISUALIZE = True
     print('GPU device {:d}'.format(args.gpu_id))
 
     # prepare network
