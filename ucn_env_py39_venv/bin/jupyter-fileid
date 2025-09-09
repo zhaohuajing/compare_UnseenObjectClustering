@@ -1,7 +1,0 @@
-#!/home/csrobot/graspnet_ws/src/UnseenObjectClustering/ucn_env_py39_venv/bin/python
-import sys
-from jupyter_server_fileid.cli import main
-if __name__ == '__main__':
-    if sys.argv[0].endswith('.exe'):
-        sys.argv[0] = sys.argv[0][:-4]
-    sys.exit(main())
