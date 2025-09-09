@@ -3,13 +3,18 @@ data/
 ngc/
 experiments/maskrcnn_configs
 
+
+ucn_env_py39_venv
+**/site-packages/
+*venv*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 
 # C extensions
-*.so
+*.so*
 
 # Distribution / packaging
 .Python
