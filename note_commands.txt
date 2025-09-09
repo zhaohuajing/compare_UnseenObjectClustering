@@ -1,0 +1,15 @@
+terminal 1: csrobot@nerve-desktop--9:~/graspnet_ws/src/UnseenObjectClustering$ roscore
+
+terminal 2: (ucn_env_py39_venv) csrobot@nerve-desktop--9:~/graspnet_ws/src/UnseenObjectClustering$ ./experiments/scripts/ros_seg_rgbd_add_test_segmentation_realsense.sh 0
+
+	10 objects
+	===========================================
+	10 objects
+	===========================================
+	10 objects
+
+
+terminal 3: csrobot@nerve-desktop--9:~/graspnet_ws/src/UnseenObjectClustering$ python tools/test_ros_rgbd_publisher.py
+
+	[INFO] [1757374945.437437]: Published RGB, depth, and camera_info
+	[INFO] [1757374946.437311]: Published RGB, depth, and camera_info
