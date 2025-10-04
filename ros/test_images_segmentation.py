@@ -10,7 +10,7 @@ import torch
 import torch.nn.parallel
 import torch.backends.cudnn as cudnn
 import torch.utils.data
-import tf
+# import tf
 import rosnode
 import message_filters
 import cv2

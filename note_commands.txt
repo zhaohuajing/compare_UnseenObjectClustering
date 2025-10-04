@@ -13,3 +13,17 @@ terminal 3: csrobot@nerve-desktop--9:~/graspnet_ws/src/UnseenObjectClustering$ p
 
 	[INFO] [1757374945.437437]: Published RGB, depth, and camera_info
 	[INFO] [1757374946.437311]: Published RGB, depth, and camera_info
+
+
+----------------------------
+
+Inside docker:
+
+(unseen_obj) root@27db35bf39a0:~/graspnet_ws/src/unseen_obj_clst_ros2/compare_UnseenObjectClustering# python test_images_segmentation_no_ros.py \
+    --gpu 0 \
+    --network seg_resnet34_8s_embedding \
+    --pretrained ./checkpoints/seg_resnet34_8s_embedding_cosine_rgbd_add_sampling_epoch_16.checkpoint.pth \
+    --pretrained_crop ./checkpoints/seg_resnet34_8s_embedding_cosine_rgbd_add_crop_sampling_epoch_16.checkpoint.pth \
+    --cfg experiments/cfgs/seg_resnet34_8s_embedding_cosine_rgbd_add_tabletop.yml \
+    --rgb ./data/demo/000000-color.png \
+    --depth ./data/demo/000000-depth.png
