@@ -44,10 +44,9 @@ def parse_args():
     parser.add_argument('--fy', type=float, default=615.0)
     parser.add_argument('--px', type=float, default=320.0)
     parser.add_argument('--py', type=float, default=240.0)
-    parser.add_argument('--input_dir', type=str, default='./data/demo')
+    parser.add_argument('--input_dir', type=str, default='data/demo')
     parser.add_argument('--output_dir', type=str, default='output/inference_results')
-    parser.add_argument('--rgb', type=str, required=True, help='Path to RGB image')
-    parser.add_argument('--depth', type=str, required=True, help='Path to depth image (in meters, npy or 16-bit png)')
+    parser.add_argument('--im_name', type=str, required=True, help='Path to RGB and depth images (in meters, npy or 16-bit png)')
     return parser.parse_args()
 
 
@@ -69,7 +68,7 @@ def main():
     cudnn.benchmark = True
 
     # Prepare network
-    print(f"Loading network: {args.network}")
+    # print(f"Loading network: {args.network}")
     network_data = torch.load(args.pretrained, map_location='cpu')
     num_classes = 2
     network = networks.__dict__[args.network](num_classes, cfg.TRAIN.NUM_UNITS, network_data)
@@ -83,17 +82,17 @@ def main():
         network_crop = torch.nn.DataParallel(network_crop, device_ids=[args.gpu]).cuda(cfg.device)
         network_crop.eval()
 
-    # Load RGB and Depth
-    if args.depth.endswith('.npy'):
-        depth_img = np.load(f"{args.input_dir}/{args.depth}.npy").astype(np.float32)
+    # Load RGB and Depth (Orignail version: depth and rgb images with independent input name & path; only depth input has .npy option)
+    if args.im_name.endswith('.npy'):
+        depth_img = np.load(f"{args.input_dir}/{args.im_name}-depth.npy").astype(np.float32)
     else:
-        depth_img = cv2.imread(f"{args.input_dir}/{args.depth}-depth.png", cv2.IMREAD_UNCHANGED).astype(np.float32)
+        depth_img = cv2.imread(f"{args.input_dir}/{args.im_name}-depth.png", cv2.IMREAD_UNCHANGED).astype(np.float32)
         if depth_img.max() > 100:  # assume depth in mm
             depth_img /= 1000.0
 
-    im_color = cv2.imread(f"{args.input_dir}/{args.rgb}-color.png")
+    im_color = cv2.imread(f"{args.input_dir}/{args.im_name}-color.png")
     if im_color is None:
-        raise FileNotFoundError(f"RGB image not found: {args.rgb}-color.png")
+        raise FileNotFoundError(f"RGB image not found: {args.im_name}-color.png")
 
     # Resize and pad
     if cfg.TEST.SCALES_BASE[0] != 1:
@@ -115,26 +114,49 @@ def main():
     sample['depth'] = depth_blob.unsqueeze(0)
 
     # Run network
-    out_label, out_label_refined = test_sample(sample, network, network_crop)
-    label = out_label[0].cpu().numpy()
+    label, label_refined = test_sample(sample, network, network_crop)
+    out_label = label[0].cpu().numpy()
+    out_label_refined = label_refined[0].cpu().numpy()
     num_objects = len(np.unique(label)) - 1
     print(f"Detected {num_objects} objects.")
 
     # Visualization
-    im_label = visualize_segmentation(im_color[:, :, ::-1], label, return_rgb=True)
-    os.makedirs(args.output_dir, exist_ok=True)
-    cv2.imwrite(os.path.join(args.output_dir, f'segmentation_{args.rgb}.png'), im_label[:, :, ::-1])
-    scipy.io.savemat(os.path.join(args.output_dir, f'segmentation_{args.rgb}.mat'),
-                     {'rgb': im_color, 'label': label})
+    im_label = visualize_segmentation(im_color[:, :, ::-1], out_label, return_rgb=True)
+    im_label_refined = visualize_segmentation(im_color[:, :, ::-1], out_label_refined, return_rgb=True)
 
+    # Save outputs
+    results_saving_dir = f"{args.output_dir}/segmentation_{args.im_name}"
+    os.makedirs(results_saving_dir, exist_ok=True)
+    cv2.imwrite(os.path.join(results_saving_dir, f"visualization.png"), im_label_refined[:, :, ::-1])
+    scipy.io.savemat(os.path.join(results_saving_dir, f"segmentation.mat"),
+                     {'rgb': im_color, 'label': out_label, 'label_refined': out_label_refined})
+
+    # Save im_label (RGB visualization) and sample (network inputs) separately
+    np.save(f"{results_saving_dir}/im_label.npy", im_label)
+    np.save(f"{results_saving_dir}/im_label_refined.npy", im_label_refined)
+    np.savez_compressed(
+        f"{results_saving_dir}/sample.npz",
+        image_color=sample["image_color"].cpu().numpy(),
+        depth=sample["depth"].cpu().numpy()
+    )
+
+    # Update result dict to include them
     result = {
         "num_objects": int(num_objects),
-        "label": label.tolist()
+        "label": out_label.tolist(),
+        "label_refined": out_label_refined.tolist(),
+        "paths": {
+            "im_label": f"{results_saving_dir}/im_label.npy",
+            "im_label_refined": f"{results_saving_dir}/im_label_refined.npy",
+            "sample": f"{results_saving_dir}/sample.npz",
+            "visualization": f"{results_saving_dir}/segmentation.png"
+        }
     }
-    with open(f"{args.output_dir}/segmentation_{args.rgb}.json", 'w') as f:
+
+    with open(f"{results_saving_dir}/segmentation.json", 'w') as f:
         json.dump(result, f, indent=4)
 
-    print(f"Saved results to {args.output_dir}")
+    print(f"Saved results to {results_saving_dir}")
 
 
 if __name__ == '__main__':
