@@ -136,3 +136,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# checkpoints
+
+*/checkpoints/*compare_UnseenObjectClustering/checkpoints/
