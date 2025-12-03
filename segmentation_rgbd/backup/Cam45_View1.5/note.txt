@@ -1,0 +1,5 @@
+network used:
+
+seg_resnet34_8s_embedding_cosine_rgbd_add_sampling_epoch_16.checkpoint.pth
+
+seg_resnet34_8s_embedding_cosine_rgbd_add_tabletop.yml
