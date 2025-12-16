@@ -140,4 +140,5 @@ dmypy.json
 
 # checkpoints
 
-*/checkpoints/*compare_UnseenObjectClustering/checkpoints/
+*checkpoints
+*compare_UnseenObjectClustering/checkpoints/

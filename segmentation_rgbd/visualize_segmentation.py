@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 import os
 
 # paths
-color_path = "./input/from_rgbd-color.png"
-labels_path = "./output/segmentation_from_rgbd/im_label.npy"
+color_path = "/home/csrobot/graspnet_ws/src/unseen_obj_clst_ros2/compare_UnseenObjectClustering/segmentation_rgbd/input/from_rgbd-color.png"
+labels_path = "/home/csrobot/graspnet_ws/src/unseen_obj_clst_ros2/compare_UnseenObjectClustering/segmentation_rgbd/output/segmentation_from_rgbd/im_label.npy"
 
 # load data
 im_color = np.array(Image.open(color_path))
@@ -50,5 +50,5 @@ plt.imshow(overlay)
 plt.axis("off")
 
 plt.tight_layout()
-plt.savefig('segmentation_result.png')
-# plt.show()
+plt.savefig('/home/csrobot/graspnet_ws/src/unseen_obj_clst_ros2/compare_UnseenObjectClustering/segmentation_rgbd/output/segmentation_from_rgbd/segmentation_result.png')
+plt.show()
