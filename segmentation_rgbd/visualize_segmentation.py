@@ -2,6 +2,9 @@ import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 import os
+import matplotlib.patches as mpatches
+
+cmap = plt.cm.get_cmap("tab20")
 
 # paths
 color_path = "/home/csrobot/graspnet_ws/src/unseen_obj_clst_ros2/compare_UnseenObjectClustering/segmentation_rgbd/input/from_rgbd-color.png"
@@ -13,20 +16,23 @@ labels = np.load(labels_path)
 
 print("im_color shape:", im_color.shape)
 print("labels shape:", labels.shape)
-uniq = np.unique(labels)
-print("unique labels:", uniq)
+uniq_labels = np.unique(labels)
+print("unique labels:", uniq_labels)
 print("pixel counts per label:")
-for u in uniq:
+for u in uniq_labels:
     print(f"  label {u}: {(labels == u).sum()} pixels")
+
+
+
 
 # build overlay
 overlay = im_color.copy()
 alpha = 0.5
 
 # simple color palette
-colors = plt.cm.get_cmap("tab20", len(uniq))
+colors = plt.cm.get_cmap("tab20", len(uniq_labels))
 
-for i, lbl in enumerate(uniq):
+for i, lbl in enumerate(uniq_labels):
     if lbl == 0:
         continue  # skip background
     mask = labels == lbl
@@ -48,6 +54,20 @@ plt.subplot(1, 2, 2)
 plt.title("RGB + instances")
 plt.imshow(overlay)
 plt.axis("off")
+
+
+plt_labels = uniq_labels[uniq_labels != 0]
+legend_handles = []
+
+for label in plt_labels:
+    color = cmap(label % cmap.N)
+    legend_handles.append(
+        mpatches.Patch(color=color, label=f"Instance {label}")
+    )
+
+if legend_handles:
+    plt.legend(handles=legend_handles, loc="upper right")
+
 
 plt.tight_layout()
 plt.savefig('/home/csrobot/graspnet_ws/src/unseen_obj_clst_ros2/compare_UnseenObjectClustering/segmentation_rgbd/output/segmentation_from_rgbd/segmentation_result.png')
