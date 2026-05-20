@@ -62,7 +62,7 @@ legend_handles = []
 for label in plt_labels:
     color = cmap(label % cmap.N)
     legend_handles.append(
-        mpatches.Patch(color=color, label=f"Instance {label}")
+        mpatches.Patch(color=color, label=f"L{label}")
     )
 
 if legend_handles:
