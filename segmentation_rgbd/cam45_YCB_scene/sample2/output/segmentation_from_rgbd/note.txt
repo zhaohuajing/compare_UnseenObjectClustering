@@ -1,0 +1,42 @@
+[start_behavior-5] im_color shape: (480, 640, 3)
+[start_behavior-5] labels shape: (480, 640)
+[start_behavior-5] unique labels: [0 1 2 3 4 5 6 7]
+[start_behavior-5] pixel counts per label:
+[start_behavior-5]   label 0: 289070 pixels
+[start_behavior-5]   label 1: 2213 pixels
+[start_behavior-5]   label 2: 36 pixels
+[start_behavior-5]   label 3: 8652 pixels
+[start_behavior-5]   label 4: 2087 pixels
+[start_behavior-5]   label 5: 12 pixels
+[start_behavior-5]   label 6: 2754 pixels
+[start_behavior-5]   label 7: 2376 pixels
+[start_behavior-5] [INFO] [1772223823.223780388] [behavior]: [UnseenObjSegRGBDServiceState] Received instance_ids map of shape 480x640.
+[start_behavior-5] [INFO] [1772223823.227342644] [behavior]: [UnseenObjSegRGBDServiceState] Unique instance IDs (no background): [1, 2, 3, 4, 5, 6, 7]
+[behavior_mirror_sm-2] [WARN] [1772223823.248705041] [behavior_mirror]: OCS is back in sync after 1 heartbeats
+[behavior_mirror_sm-2] [INFO] [1772223823.249031339] [behavior_mirror]: IDs 664915416 664915416   Onboard IDs: array('i', [1, 1592854529])
+[behavior_mirror_sm-2]     Mirror IDs: array('i', [1, 1592854529])
+[behavior_mirror_sm-2] [INFO] [1772223823.249342809] [behavior_mirror]:   onboard          0 : 'root                          ' out=  0 - 
+[start_behavior-5] [INFO] [1772223823.249458644] [behavior]: [SelectInstanceToSceneNameState] Instance 1 has area 2213.
+[behavior_mirror_sm-2] [INFO] [1772223823.249641532] [behavior_mirror]:   onboard 1592854528 : 'SelectInstanceToScene         ' out=  0 - /SelectInstanceToScene
+[start_behavior-5] [INFO] [1772223823.250077210] [behavior]: [SelectInstanceToSceneNameState] Instance 2 has area 36.
+[start_behavior-5] [INFO] [1772223823.250673769] [behavior]: [SelectInstanceToSceneNameState] Instance 3 has area 8652.
+[start_behavior-5] [INFO] [1772223823.251237860] [behavior]: [SelectInstanceToSceneNameState] Instance 4 has area 2087.
+[start_behavior-5] [INFO] [1772223823.251776445] [behavior]: [SelectInstanceToSceneNameState] Instance 5 has area 12.
+[start_behavior-5] [INFO] [1772223823.252298938] [behavior]: [SelectInstanceToSceneNameState] Instance 6 has area 2754.
+[start_behavior-5] [INFO] [1772223823.252829142] [behavior]: [SelectInstanceToSceneNameState] Instance 7 has area 2376.
+[start_behavior-5] [INFO] [1772223823.253107841] [behavior]: [SelectInstanceToSceneNameState] Selected instance 3 (area=8652) → scene_name='scene_from_ucn'
+[start_behavior-5] [INFO] Saved scene dict to /home/csrobot/graspnet_ws/src/contact_graspnet_ros2/contact_graspnet/test_data//scene_from_ucn.npy
+[start_behavior-5] [INFO] Done.
+[start_behavior-5] [INFO] [1772223823.627517853] [behavior]: [CGNGraspRGBDServiceState] Requesting grasps for scene 'scene_from_ucn'
+[start_behavior-5] [INFO] [1772223823.628517846] [behavior]: Client about to call service
+[grasp_executor_rgbd_server-26] [INFO] [1772223823.629060878] [grasp_executor_rgbd_server]: Running inference in Docker for scene scene_from_ucn...
+[grasp_executor_cloud_server-25] [ERROR] [1772223823.629300670] [grasp_executor_cloud_server]: handle_grasp_request failed: 'GetGrasps_Request' object has no attribute 'scene_id'
+[start_behavior-5] Loaded grasp predictions for object IDs: [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0]
+[start_behavior-5] Point cloud shape: (657676, 3)
+[start_behavior-5] [INFO] Cropping around center: [0.0, 0, 0.3]
+[start_behavior-5] [INFO] min_bound: [-2.3 -2.3 -2. ] max_bound: [2.3 2.3 2.6]
+[start_behavior-5] [INFO] Original points: 657676  -> Cropped points: 532503
+[start_behavior-5] [INFO] Saved screenshot to: /home/csrobot/graspnet_ws/src/contact_graspnet_ros2/contact_graspnet/results/scene_0.png
+[start_behavior-5] [INFO] [1772223829.336164865] [behavior]: [CGNGraspRGBDServiceState] Called service '/get_grasps'.
+[start_behavior-5] [INFO] [1772223829.336527100] [behavior]: [CGNGraspRGBDServiceState] Received 0 grasp poses.
+

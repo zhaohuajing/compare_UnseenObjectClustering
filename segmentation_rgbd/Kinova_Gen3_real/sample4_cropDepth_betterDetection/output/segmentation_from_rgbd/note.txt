@@ -1,0 +1,10 @@
+im_color shape: (360, 560, 3)
+labels shape: (360, 560)
+unique labels: [0 1 2 3 4]
+pixel counts per label:
+  label 0: 161451 pixels
+  label 1: 22388 pixels
+  label 2: 5873 pixels
+  label 3: 759 pixels
+  label 4: 11129 pixels
+
