@@ -1,0 +1,7 @@
+pixel counts per valid label:
+  label 1: 27341 pixels
+  label 4: 10796 pixels
+  label 7: 1755 pixels
+  label 8: 1459 pixels
+  label 9: 8194 pixels
+  label 10: 32581 pixels

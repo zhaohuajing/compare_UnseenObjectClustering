@@ -14,20 +14,23 @@ labels_path = "/home/csrobot/graspnet_ws/src/unseen_obj_clst_ros2/compare_Unseen
 im_color = np.array(Image.open(color_path))
 labels = np.load(labels_path)
 
+min_obj_point_number = 500 
+
 print("im_color shape:", im_color.shape)
 print("labels shape:", labels.shape)
 uniq_labels = np.unique(labels)
 print("unique labels:", uniq_labels)
 print("pixel counts per label:")
-for u in uniq_labels:
-    print(f"  label {u}: {(labels == u).sum()} pixels")
+for u in uniq_labels[uniq_labels != 0]:
+    if (labels == u).sum() > min_obj_point_number:
+        print(f"  label {u}: {(labels == u).sum()} pixels")
 
 
 
 
 # build overlay
 overlay = im_color.copy()
-alpha = 0.5
+alpha = 0.8
 
 # simple color palette
 colors = plt.cm.get_cmap("tab20", len(uniq_labels))
@@ -59,15 +62,20 @@ plt.axis("off")
 plt_labels = uniq_labels[uniq_labels != 0]
 legend_handles = []
 
-for label in plt_labels:
-    color = cmap(label % cmap.N)
-    legend_handles.append(
-        mpatches.Patch(color=color, label=f"L{label}")
-    )
+colors = plt.cm.get_cmap("tab20", len(uniq_labels))
+
+for i, label in enumerate(uniq_labels):
+    if label == 0:
+        continue
+
+    if (labels == label).sum() > min_obj_point_number:
+        color = colors(i)
+        legend_handles.append(
+            mpatches.Patch(color=color, label=f"L{label}")
+        )
 
 if legend_handles:
     plt.legend(handles=legend_handles, loc="upper right")
-
 
 plt.tight_layout()
 plt.savefig('/home/csrobot/graspnet_ws/src/unseen_obj_clst_ros2/compare_UnseenObjectClustering/segmentation_rgbd/output/segmentation_from_rgbd/segmentation_result.png')
