@@ -1,0 +1,18 @@
+[grasp_executor_rgbd_server-1] [INFO] [1786512501.890608769] [grasp_executor_rgbd_server]: Received grasp results from docker for scene scene_from_ucn:
+[grasp_executor_rgbd_server-1] [INFO] [1786512501.891346232] [grasp_executor_rgbd_server]: Obtained 0 grasps for object 1.0
+[grasp_executor_rgbd_server-1] [INFO] [1786512501.892093660] [grasp_executor_rgbd_server]: Obtained 0 grasps for object 2.0
+[grasp_executor_rgbd_server-1] [INFO] [1786512501.892665188] [grasp_executor_rgbd_server]: Obtained 0 grasps for object 3.0
+[grasp_executor_rgbd_server-1] [INFO] [1786512501.893203229] [grasp_executor_rgbd_server]: Obtained 0 grasps for object 4.0
+[grasp_executor_rgbd_server-1] [INFO] [1786512501.899407102] [grasp_executor_rgbd_server]: Obtained 39 grasps for object 5.0
+[grasp_executor_rgbd_server-1] [INFO] [1786512501.903104106] [grasp_executor_rgbd_server]: Obtained 23 grasps for object 6.0
+[grasp_executor_rgbd_server-1] [INFO] [1786512501.904749558] [grasp_executor_rgbd_server]: Obtained 8 grasps for object 7.0
+[grasp_executor_rgbd_server-1] [INFO] [1786512501.909376174] [grasp_executor_rgbd_server]: Obtained 32 grasps for object 8.0
+[grasp_executor_rgbd_server-1] [INFO] [1786512501.910017862] [grasp_executor_rgbd_server]: Obtained 0 grasps for object 9.0
+[grasp_executor_rgbd_server-1] [INFO] [1786512501.910638811] [grasp_executor_rgbd_server]: Camera-frame grasp Z range: [0.418, 0.533]
+[grasp_executor_rgbd_server-1] [ERROR] [1786512502.920504514] [grasp_executor_rgbd_server]: TF lookup base_link <- camera_color_frame failed: Could not find a connection between 'base_link' and 'camera_color_frame' because they are not part of the same tree.Tf has two or more unconnected trees.
+[grasp_executor_rgbd_server-1] [INFO] [1786512502.921180625] [grasp_executor_rgbd_server]: Base-frame grasp Z range before safety offset: [0.418, 0.533]
+[grasp_executor_rgbd_server-1] [INFO] [1786512502.921861040] [grasp_executor_rgbd_server]: Applied base-frame +Z safety offset: 0.040 m; Z range after offset: [0.458, 0.573]
+[grasp_executor_rgbd_server-1] [INFO] [1786512502.922723529] [grasp_executor_rgbd_server]: Responded with 102 grasps in frame 'base_link' for scene scene_from_ucn, grasps_msg.object_ids = [5 6 7 8]
+
+
+??????

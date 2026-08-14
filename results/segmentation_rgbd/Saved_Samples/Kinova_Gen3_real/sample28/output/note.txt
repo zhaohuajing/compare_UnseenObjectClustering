@@ -1,0 +1,25 @@
+8:34:08 PM] [UnseenObjSegRGBDServiceState] Unique instance IDs (no background): [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+[8:34:08 PM] [SelectInstanceToSceneNameState] Instance 1 has area 6717.
+[8:34:08 PM] [SelectInstanceToSceneNameState] Instance 2 has area 406.
+[8:34:08 PM] [SelectInstanceToSceneNameState] Instance 3 has area 15451.
+[8:34:08 PM] [SelectInstanceToSceneNameState] Instance 4 has area 10214.
+[8:34:08 PM] [SelectInstanceToSceneNameState] Instance 5 has area 2092.
+[8:34:08 PM] [SelectInstanceToSceneNameState] Instance 6 has area 1048.
+[8:34:08 PM] [SelectInstanceToSceneNameState] Instance 7 has area 4466.
+[8:34:08 PM] [SelectInstanceToSceneNameState] Instance 8 has area 4836.
+[8:34:08 PM] [SelectInstanceToSceneNameState] Instance 9 has area 5024.
+[8:34:08 PM] [SelectInstanceToSceneNameState] Instance 10 has area 6222.
+[8:34:08 PM] [SelectInstanceToSceneNameState] Instance 11 has area 2431.
+[8:34:08 PM] [SelectInstanceToSceneNameState] Instance 12 has area 7554.
+[8:34:08 PM] [SelectInstanceToSceneNameState] Selected instance 3 (area=15451) → scene_name='scene_from_ucn'
+[8:34:08 PM] [SelectInstanceToSceneNameState] Generated contact_graspnet/test_data/scene_from_ucn.npy using ucn_to_cgn_scene.py
+[8:34:08 PM] [GraspSAMServiceState] Preprocessing latest UOC RGB-D to Jacquard-like GraspSAM input. [+]
+[8:34:10 PM] [GraspSAMServiceState] rgbd_seg_to_jacquard_like_autodirs.py stdout: [+]
+[8:34:10 PM] [GraspSAMServiceState] Calling /run_graspsam | root=/home/csrobot/graspnet_ws/src/graspsam_ros2/compare_GraspSAM/rgbd2jacquard/realtime | dataset=jacquard | checkpoint=./trained_checkpoint/total_vit_t_default/jacquard/2026-02-28-04-40-49/epoch54.pth | encoder=vit_t | no_grasps=5 | seen_set=False | custom_no_gt=True | sample_id=0_from_rgbd | mask_id=3 | remove_background=False | apply_mask_to_q=True | preprocess_rgbd_to_jacquard=True
+[8:34:10 PM] Client about to call service
+[8:34:18 PM] [GraspSAMServiceState] Success. Parsed grasps: 5, target poses: 5, output_dir: /home/csrobot/graspnet_ws/src/graspsam_ros2/compare_GraspSAM/grasp_outputs/run_20260725_003413
+[8:34:18 PM] Client about to call service
+[8:34:44 PM] [MoveToPoseServiceState] Called service '/move_to_pose'.
+[8:34:44 PM] [MoveToPoseServiceState] Finished plan with result: True.
+[8:34:44 PM] PreemptableStateMachine 'UnseenObjClusterGraspSamPipeine' spin() - done with outcome=finished
+[8:34:44 PM] [92m--- Behavior Mirror ready! ---[0m

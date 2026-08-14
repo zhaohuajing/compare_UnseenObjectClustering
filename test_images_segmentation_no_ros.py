@@ -193,7 +193,7 @@ def parse_args():
     parser.add_argument('--px', type=float, default=320.0)
     parser.add_argument('--py', type=float, default=240.0)
     parser.add_argument('--input_dir', type=str, default='data/demo')
-    parser.add_argument('--output_dir', type=str, default='output/inference_results')
+    parser.add_argument('--output_dir', type=str, default='results/inference_results')
     parser.add_argument('--im_name', type=str, required=True, help='Path to RGB and depth images (in meters, npy or 16-bit png)')
 
      # NEW: optional point-cloud input
@@ -252,7 +252,7 @@ def run_inference(sample, im_name, output_dir, network, network_crop, device):
        {output_dir}/segmentation_{im_name}/
     """
     os.makedirs(output_dir, exist_ok=True)
-    result_dir = os.path.join(output_dir, f"segmentation_{im_name}")
+    result_dir = os.path.join(output_dir) #, f"segmentation_{im_name}")
     os.makedirs(result_dir, exist_ok=True)
 
     # HOOK: the exact forward you already do for a single sample

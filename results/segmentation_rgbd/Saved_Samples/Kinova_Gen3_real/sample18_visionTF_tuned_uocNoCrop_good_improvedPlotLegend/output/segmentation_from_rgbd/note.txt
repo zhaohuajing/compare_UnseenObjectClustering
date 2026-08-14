@@ -1,0 +1,24 @@
+pixel counts per valid label:
+  label 1: 27341 pixels
+  label 4: 10796 pixels
+  label 7: 1755 pixels
+  label 8: 1459 pixels
+  label 9: 8194 pixels
+  label 10: 32581 pixels
+
+
+[INFO] [1779840551.757009864] [grasp_server]: Received grasp results from docker for scene scene_from_ucn:
+[INFO] [1779840551.772044245] [grasp_server]: Obtained 80 grasps for object 1.0
+[INFO] [1779840551.779542221] [grasp_server]: Obtained 55 grasps for object 2.0
+[INFO] [1779840551.780009233] [grasp_server]: Obtained 0 grasps for object 3.0
+[INFO] [1779840551.790309837] [grasp_server]: Obtained 74 grasps for object 4.0
+[INFO] [1779840551.790777164] [grasp_server]: Obtained 0 grasps for object 5.0
+[INFO] [1779840551.791238166] [grasp_server]: Obtained 0 grasps for object 6.0
+[INFO] [1779840551.791885094] [grasp_server]: Obtained 1 grasps for object 7.0
+[INFO] [1779840551.792344102] [grasp_server]: Obtained 0 grasps for object 8.0
+[INFO] [1779840551.812301673] [grasp_server]: Obtained 152 grasps for object 9.0
+[INFO] [1779840551.827313894] [grasp_server]: Obtained 112 grasps for object 10.0
+[INFO] [1779840551.827869423] [grasp_server]: Camera-frame grasp Z range: [-0.147, 0.312]
+[ERROR] [1779840552.846020232] [grasp_server]: TF lookup simple_pedestal <- rgbd_camera/camera_link/rgbd_camera failed: "simple_pedestal" passed to lookupTransform argument target_frame does not exist. 
+[INFO] [1779840552.849191647] [grasp_server]: Base-frame grasp Z range:   [-0.147, 0.312]
+[INFO] [1779840552.850109718] [grasp_server]: Responded with 474 grasps in frame 'simple_pedestal' for scene scene_from_ucn, grasps_msg.object_ids = [ 1  2  4  7  9 10]
